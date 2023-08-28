@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\RegisteredUserController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/register', [RegisteredUserController::class, 'store']);
+
+Route::post('/admin/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/add_new_category', [AdminController::class, 'add_new_category']);
+Route::post('/add_new_type', [AdminController::class, 'add_new_type']);
+Route::get('/exam_category', [AdminController::class, 'exam_category']);
+// exam_type
+Route::get('/exam_type', [AdminController::class, 'exam_type']);
+Route::get('/manage_exam', [AdminController::class, 'manage_exam']);
+Route::post('/add_new_exam', [AdminController::class, 'add_new_exam']);
+Route::get('/add_questions/{id}', [AdminController::class, 'add_questions']);
+Route::post('/add_new_question', [AdminController::class, 'add_new_question']);

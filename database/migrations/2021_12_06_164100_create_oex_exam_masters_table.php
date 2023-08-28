@@ -17,9 +17,12 @@ class CreateOexExamMastersTable extends Migration
             $table->increments('id');
             $table->string('title')->nullable();
             $table->string('category')->nullable();
+            $table->string('type')->nullable();
             $table->string('exam_date')->nullable();
+            $table->string('time_clock')->nullable();
             $table->string('exam_duration')->nullable();
-            $table->string('status')->nullable(); 
+            $table->string('count')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

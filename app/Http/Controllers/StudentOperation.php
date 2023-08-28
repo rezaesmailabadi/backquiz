@@ -39,13 +39,18 @@ class StudentOperation extends Controller
     }
 
 
+
+
+
     //join exam page
     public function join_exam($id){
         
         $question= Oex_question_master::where('exam_id',$id)->get();
 
         $exam=Oex_exam_master::where('id',$id)->get()->first();
+
         return view('student.join_exam',['question'=>$question,'exam'=>$exam]);
+
     }
 
 
@@ -138,6 +143,12 @@ class StudentOperation extends Controller
 
         return view('student.view_amswer',$data);
     }
+
+
+
+    
+
+
 
 
     
