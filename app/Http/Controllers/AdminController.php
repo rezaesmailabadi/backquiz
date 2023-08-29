@@ -46,21 +46,14 @@ class AdminController extends Controller
     }
 
 
-    public function exam_type(){
+    public function exam_type()
+    {
 
         $data['category'] = Oex_type::get()->toArray();
         return response()->json([
             'results' => $data
         ], 200);
     }
-
-
-
-
-
-
-
-
 
 
     //Adding new exam categories
@@ -135,13 +128,6 @@ class AdminController extends Controller
 
 
 
-
-
-
-
-
-
-
     //Manage exam page
     public function manage_exam()
     {
@@ -186,65 +172,33 @@ class AdminController extends Controller
 
         $validator = Validator::make($request->all(), [
             'title' => 'required', 'exam_date' => 'required', 'exam_category' => 'required',
-            'exam_duration' => 'required' , 'count' => 'required' ,'type' => 'required' ,'time_clock' => 'required'
+            'exam_duration' => 'required', 'count' => 'required', 'type' => 'required', 'time_clock' => 'required'
         ]);
 
 
-            $exam = new Oex_exam_master();
+        $exam = new Oex_exam_master();
 
-            $exam->title = $request->title;
-            // $exam->exam_date = $request->exam_date;
-            $exam->exam_date = $request->exam_date;
-            $exam->time_clock = $request->time_clock;            
-            $exam->exam_duration = $request->exam_duration;
-            $exam->category = $request->exam_category;
-            $exam->count = $request->count;
-            $exam->type = $request->exam_type;
-            $exam->status = 1;
-            $exam->save();
+        $exam->title = $request->title;
+        // $exam->exam_date = $request->exam_date;
+        $exam->exam_date = $request->exam_date;
+        $exam->time_clock = $request->time_clock;
+        $exam->exam_duration = $request->exam_duration;
+        $exam->category = $request->exam_category;
+        $exam->count = $request->count;
+        $exam->type = $request->exam_type;
+        $exam->status = 1;
+        $exam->save();
 
         return response()->json([
             'results' => $exam
         ], 200);
 
 
-            // $arr = array('status' => 'true', 'message' => 'exam added successfully', 'reload' => url('admin/manage_exam'));
-      
+        // $arr = array('status' => 'true', 'message' => 'exam added successfully', 'reload' => url('admin/manage_exam'));
+
 
         // echo json_encode($arr);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //editing exam status
@@ -420,14 +374,6 @@ class AdminController extends Controller
 
 
 
-
-
-
-
-
-
-
-
     //addning questions
     public function add_questions($id)
     {
@@ -570,8 +516,9 @@ class AdminController extends Controller
 
 
 
-    public function add_new_type(Request $request){
-        
+    public function add_new_type(Request $request)
+    {
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
         ]);
@@ -583,11 +530,4 @@ class AdminController extends Controller
             $cat->save();
         }
     }
-
-
-
-
-
-
-
 }

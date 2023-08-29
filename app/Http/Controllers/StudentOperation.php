@@ -8,6 +8,7 @@ use App\Models\Oex_student;
 use App\Models\Oex_exam_master;
 use App\Models\Oex_question_master;
 use App\Models\Oex_result;
+use App\Models\Order_exam;
 use App\Models\User;
 use App\Models\user_exam;
 
@@ -46,19 +47,25 @@ class StudentOperation extends Controller
     public function join_exam($id){
         
         $question= Oex_question_master::where('exam_id',$id)->get();
-
         $exam=Oex_exam_master::where('id',$id)->get()->first();
-
-        return view('student.join_exam',['question'=>$question,'exam'=>$exam]);
-
+        // return view('student.join_exam',['question'=>$question,'exam'=>$exam]);
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
     //On submit
     public function submit_questions(Request $request){
-
-        
         $yes_ans=0;
         $no_ans=0;
         $data= $request->all();
@@ -142,6 +149,14 @@ class StudentOperation extends Controller
         $data['question']= Oex_question_master::where('exam_id',$id)->get()->toArray();
 
         return view('student.view_amswer',$data);
+    }
+
+
+    public function order_exams(Request $request){
+        $order_exam= new Order_exam;
+        $order_exam->user_id = $request->user_id;
+        $order_exam->exam_id = $request->exam_id;
+        $order_exam->save();
     }
 
 
